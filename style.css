@@ -1,0 +1,127 @@
+/* 기본 베이스 스타일 */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    padding: 20px 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+p {
+    font-size: 13px;
+    color: #666;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* 📸 캡처될 전체 배경 영역 스타일 */
+#capture-area {
+    background-color: #f5f5f5;
+    padding: 20px 10px;
+    display: inline-block; /* 크기에 딱 맞게 캡처되도록 설정 */
+}
+
+/* 👥 공/수 무조건 좌우 배치 (flex-wrap 제거) */
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    margin: 0 auto;
+}
+
+.grid-section {
+    background: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    box-sizing: border-box;
+}
+
+.grid-section h2 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+/* 3x4 네모 칸 틀 스타일 (화면 비율에 맞게 칸 크기 조절) */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 50px); /* 📱 폰 화면에서도 좌우 배치 안 깨지게 크기 최적화 */
+    grid-template-rows: repeat(4, 50px);
+    gap: 3px; 
+    background-color: #000;
+    padding: 3px;
+    border: 2px solid #000;
+    box-sizing: border-box;
+}
+
+/* 💻 PC나 화면이 좀 더 여유로울 때는 칸을 큼직하게 키워줍니다 */
+@media (min-width: 375px) {
+    .grid {
+        grid-template-columns: repeat(3, 55px);
+        grid-template-rows: repeat(4, 55px);
+    }
+}
+@media (min-width: 450px) {
+    .grid {
+        grid-template-columns: repeat(3, 85px);
+        grid-template-rows: repeat(4, 85px);
+    }
+}
+
+/* 개별 빈 칸 스타일 */
+.cell {
+    background-color: #fff;
+    cursor: pointer;
+    background-size: cover;       /* 🎯 비율 깨짐 없이 칸에 꽉 차게 채우기 */
+    background-position: center;  /* 🎯 정중앙을 기준으로 자르기 */
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.cell::after {
+    content: '+';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ddd;
+    font-size: 18px;
+}
+
+.cell.has-img::after {
+    display: none;
+}
+
+/* 하단 저장 버튼 */
+.btn-container {
+    margin-top: 25px;
+}
+
+#download-btn {
+    padding: 12px 24px;
+    font-size: 15px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: bold;
+    width: 85%;
+    max-width: 280px;
+}
